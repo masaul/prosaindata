@@ -352,13 +352,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-type-document">Menentukan Type Document</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memecah-kalimat">Memecah Kalimat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memproses-document">Memproses Document</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-setiap-kalimat">Menghitung PageRank Setiap Kalimat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-kalimat-dari-pagerank">Ringkasan Kalimat dari PageRank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kalimat">Hasil Kalimat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-graph"><strong>Membuat Graph</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-graph-9-node">Membuat Graph 9 Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual">Perhitungan Manual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-dengan-networkx">Perhitungan Dengan NetworkX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-summarization"><strong>Text Summarization</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-type-document">Menentukan Type Document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memecah-kalimat">Memecah Kalimat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memproses-document">Memproses Document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-setiap-kalimat">Menghitung PageRank Setiap Kalimat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-kalimat-dari-pagerank">Ringkasan Kalimat dari PageRank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kalimat">Hasil Kalimat</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -373,6 +382,91 @@ document.write(`
   <div class="tex2jax_ignore mathjax_ignore section" id="pagerank-tugas-4">
 <h1><strong>Pagerank (Tugas 4)</strong><a class="headerlink" href="#pagerank-tugas-4" title="Permalink to this heading">#</a></h1>
 <p>Pagerank adalah algoritma yang digunakan dalam analisis jaringan dan pengurutan halaman web. Algoritma Pagerank mengukur kepentingan relatif dari setiap halaman web dalam suatu jaringan dengan menganalisis jumlah dan kualitas tautan masuk ke halaman tersebut dari halaman web lain dalam jaringan.</p>
+<div class="section" id="membuat-graph">
+<h2><strong>Membuat Graph</strong><a class="headerlink" href="#membuat-graph" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="membuat-graph-9-node">
+<h3>Membuat Graph 9 Node<a class="headerlink" href="#membuat-graph-9-node" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6c0904388f1efab1f57bc2fe7bfa717c055473d9b01e445a7edbba7fd163a6b6.png" src="_images/6c0904388f1efab1f57bc2fe7bfa717c055473d9b01e445a7edbba7fd163a6b6.png" />
+</div>
+</div>
+</div>
+<div class="section" id="perhitungan-manual">
+<h3>Perhitungan Manual<a class="headerlink" href="#perhitungan-manual" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mf">0.85</span> <span class="c1"># Damping factor</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">tolerance</span> <span class="o">=</span> <span class="mf">1.0e-6</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="n">pagerank</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">d</span>
+        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="n">rank</span> <span class="o">+=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">pagerank</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">/</span> <span class="n">G</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+        <span class="n">diff</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pagerank</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">-</span> <span class="n">rank</span><span class="p">)</span>
+        <span class="n">pagerank</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">rank</span>
+    <span class="k">if</span> <span class="n">diff</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="o">*</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil Perhitungan:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pagerank</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hasil Perhitungan:
+ {1: 0.9976409644640096, 2: 0.7153297101921915, 3: 0.9976414752804466, 4: 1.2280550499924572, 5: 1.2064128853233231, 6: 1.2064130819512038, 7: 1.2882511897618658, 8: 0.9364788958702334, 9: 0.4237533778243965}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="perhitungan-dengan-networkx">
+<h3>Perhitungan Dengan NetworkX<a class="headerlink" href="#perhitungan-dengan-networkx" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pg</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Networkx pagerank:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">pg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Networkx pagerank:
+ {1: 0.11085242532970185, 2: 0.07948362274014723, 3: 0.11085242532970185, 4: 0.13645209029225677, 5: 0.13404444415308828, 6: 0.13404444415308828, 7: 0.14313616991007672, 8: 0.10405142282202429, 9: 0.04708295526991471}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="text-summarization">
+<h2><strong>Text Summarization</strong><a class="headerlink" href="#text-summarization" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>PyPDF2
@@ -387,17 +481,13 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting PyPDF2
   Downloading pypdf2-3.0.1-py3-none-any.whl (232 kB)
 ?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/232.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━ <span class=" -Color -Color-Green">225.3/232.6 kB</span> <span class=" -Color -Color-Red">7.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">5.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━ <span class=" -Color -Color-Green">225.3/232.6 kB</span> <span class=" -Color -Color-Red">8.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">4.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hRequirement already satisfied: typing_extensions&gt;=3.10.0.0 in /usr/local/lib/python3.9/dist-packages (from PyPDF2) (4.5.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: PyPDF2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed PyPDF2-3.0.1
+Successfully installed PyPDF2-3.0.1
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
@@ -412,7 +502,7 @@ Building wheels for collected packages: docx2txt
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for docx2txt (setup.py) ... ?25l?25hdone
-  Created wheel for docx2txt: filename=docx2txt-0.8-py3-none-any.whl size=3977 sha256=c263e13dcf59102fd0184d504e321fe5d117b19c591dfc580d8268f4b61aa771
+  Created wheel for docx2txt: filename=docx2txt-0.8-py3-none-any.whl size=3977 sha256=b687fd84eaca588727d9020bca4fd4c6caa17a83777b2f766ad5c2c9afdfd8fc
   Stored in directory: /root/.cache/pip/wheels/40/75/01/e6c444034338bde9c7947d3467807f889123465c2371e77418
 Successfully built docx2txt
 </pre></div>
@@ -424,7 +514,7 @@ Successfully installed docx2txt-0.8
 </div>
 </div>
 <div class="section" id="import-library">
-<h2>Import Library<a class="headerlink" href="#import-library" title="Permalink to this heading">#</a></h2>
+<h3>Import Library<a class="headerlink" href="#import-library" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -443,7 +533,7 @@ Successfully installed docx2txt-0.8
 </div>
 </div>
 <div class="section" id="menentukan-type-document">
-<h2>Menentukan Type Document<a class="headerlink" href="#menentukan-type-document" title="Permalink to this heading">#</a></h2>
+<h3>Menentukan Type Document<a class="headerlink" href="#menentukan-type-document" title="Permalink to this heading">#</a></h3>
 <p>Menentukan tipe dokumen yang akan dibaca, apakah dalam format .txt atau .pdf, atau tidak valid.</p>
 <p>Jika tipe dokumen yang dibaca adalah dalam format .txt, maka fungsi akan membuka file dan membaca isi dari file tersebut menggunakan fungsi open() dan read().
 Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka file, membaca halaman pertama dari file tersebut menggunakan PyPDF2, dan mengekstrak teks dari halaman tersebut.</p>
@@ -493,7 +583,7 @@ Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka
 </div>
 </div>
 <div class="section" id="memecah-kalimat">
-<h2>Memecah Kalimat<a class="headerlink" href="#memecah-kalimat" title="Permalink to this heading">#</a></h2>
+<h3>Memecah Kalimat<a class="headerlink" href="#memecah-kalimat" title="Permalink to this heading">#</a></h3>
 <p>Membuat sebuah objek doc_tokenizer dari kelas PunktSentenceTokenizer. Kelas ini merupakan bagian dari library nltk dan digunakan untuk memecah teks menjadi kalimat-kalimat.</p>
 <p>Memecah teks dokumen menjadi kalimat-kalimat menggunakan method tokenize() dari objek doc_tokenizer. Method ini akan mengembalikan sebuah list yang berisi semua kalimat dalam dokumen.</p>
 <p>Setelah fungsi berhasil memecah dokumen menjadi kalimat-kalimat, maka list kalimat tersebut akan dijadikan sebagai output dari fungsi tokenize(document).</p>
@@ -515,7 +605,7 @@ Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka
 </div>
 </div>
 <div class="section" id="memproses-document">
-<h2>Memproses Document<a class="headerlink" href="#memproses-document" title="Permalink to this heading">#</a></h2>
+<h3>Memproses Document<a class="headerlink" href="#memproses-document" title="Permalink to this heading">#</a></h3>
 <p>Untuk memproses teks document dapat menggunakan teknik CountVectorizer. CountVectorizer adalah sebuah metode dalam pemrosesan bahasa alami yang digunakan untuk mengubah teks menjadi vektor frekuensi kata.</p>
 <p>Untuk memproses text document terdapat beberapa langkah-langkah, yaitu:</p>
 <ol class="arabic simple">
@@ -542,7 +632,7 @@ Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka
 </div>
 </div>
 <div class="section" id="menghitung-pagerank-setiap-kalimat">
-<h2>Menghitung PageRank Setiap Kalimat<a class="headerlink" href="#menghitung-pagerank-setiap-kalimat" title="Permalink to this heading">#</a></h2>
+<h3>Menghitung PageRank Setiap Kalimat<a class="headerlink" href="#menghitung-pagerank-setiap-kalimat" title="Permalink to this heading">#</a></h3>
 <p>Untuk menghitung PageRank dari setiap kalimat dalam dokumen menggunakan algoritma PageRank dari library NetworkX dibutuhkan langkah-langkah seperti berikut:</p>
 <ol class="arabic simple">
 <li><p>Menghitung matriks normalisasi TF-IDF dari matriks frekuensi kata cv_matrix menggunakan fungsi TfidfTransformer().fit_transform(cv_matrix) dan menyimpan hasilnya dalam variabel normal_matrix.</p></li>
@@ -569,7 +659,7 @@ Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka
 </div>
 </div>
 <div class="section" id="ringkasan-kalimat-dari-pagerank">
-<h2>Ringkasan Kalimat dari PageRank<a class="headerlink" href="#ringkasan-kalimat-dari-pagerank" title="Permalink to this heading">#</a></h2>
+<h3>Ringkasan Kalimat dari PageRank<a class="headerlink" href="#ringkasan-kalimat-dari-pagerank" title="Permalink to this heading">#</a></h3>
 <p>Kemudian untuk memilih kalimat-kalimat yang akan menjadi ringkasan dokumen berdasarkan nilai PageRank mempunyai beberapa langkah-langkah, yaitu :</p>
 <ol class="arabic simple">
 <li><p>Mencari nilai PageRank tertinggi (rank_max) dan terendah (rank_min) dari sentence_array.</p></li>
@@ -613,7 +703,7 @@ Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka
 </div>
 </div>
 <div class="section" id="hasil-kalimat">
-<h2>Hasil Kalimat<a class="headerlink" href="#hasil-kalimat" title="Permalink to this heading">#</a></h2>
+<h3>Hasil Kalimat<a class="headerlink" href="#hasil-kalimat" title="Permalink to this heading">#</a></h3>
 <p>Didalam loop for, setiap kalimat dalam variabel sentence_list dicetak satu per satu menggunakan perintah print(i).</p>
 <p>Jika diinginkan, variabel sentence_list juga dapat diubah menjadi sebuah string dengan menggunakan perintah ” “.join(str(x) for x in sentence_list), dimana kalimat-kalimat dalam variabel sentence_list akan dihubungkan menggunakan spasi sehingga membentuk sebuah ringkasan dokumen yang utuh dalam bentuk string. Namun, pada code tersebut, opsi ini tidak digunakan dan digantikan dengan mencetak kalimat-kalimat satu per satu.</p>
 <div class="cell docutils container">
@@ -630,6 +720,7 @@ Jika tipe dokumen yang dibaca adalah dalam format .pdf, maka fungsi akan membuka
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Produk ini merupakan smartphone terbaru dari Microsoft yang dilengkapi dengan fitur ganda dan berjalan pada sistem operasi Windows 11.
 Diharapkan dengan hadirnya produk terbaru ini, Microsoft dapat bersaing di pasar smartphone yang semakin kompetitif dan meningkatkan kepercayaan pengguna terhadap produk-produk terbarunya.
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -694,13 +785,22 @@ Diharapkan dengan hadirnya produk terbaru ini, Microsoft dapat bersaing di pasar
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-type-document">Menentukan Type Document</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memecah-kalimat">Memecah Kalimat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memproses-document">Memproses Document</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-setiap-kalimat">Menghitung PageRank Setiap Kalimat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-kalimat-dari-pagerank">Ringkasan Kalimat dari PageRank</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kalimat">Hasil Kalimat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-graph"><strong>Membuat Graph</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-graph-9-node">Membuat Graph 9 Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual">Perhitungan Manual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-dengan-networkx">Perhitungan Dengan NetworkX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-summarization"><strong>Text Summarization</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-type-document">Menentukan Type Document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memecah-kalimat">Memecah Kalimat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memproses-document">Memproses Document</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-setiap-kalimat">Menghitung PageRank Setiap Kalimat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-kalimat-dari-pagerank">Ringkasan Kalimat dari PageRank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kalimat">Hasil Kalimat</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
